@@ -6,19 +6,32 @@ public class Planet : MonoBehaviour
 {
     [SerializeField, Range(2, 256)]
     private int resolution = 10;
+    [SerializeField]
+    private bool autoUpdate = true;
 
     [SerializeField, HideInInspector]
     private MeshFilter[] meshFilters;
     private TerrainFace[] terrainFaces;
 
+    private ShapeGenerator shapeGenerator;
+
+    public ShapeSettings shapeSettings;
+    public ColorSettings colorSettings;
+
+    [HideInInspector]
+    public bool shapeSettingsFoldout;
+    [HideInInspector]
+    public bool colorSettingsFoldout;
+
     private void OnValidate()
     {
-        Initialize();
-        GenerateMesh();
+        GeneratePlanet();
     }
 
     private void Initialize()
     {
+        shapeGenerator = new ShapeGenerator(shapeSettings);
+
         if (meshFilters == null || meshFilters.Length == 0)
         {
             meshFilters = new MeshFilter[6];
@@ -40,8 +53,33 @@ public class Planet : MonoBehaviour
                 meshFilters[i].sharedMesh = new Mesh();
             }
 
-            terrainFaces[i] = new TerrainFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            terrainFaces[i] = new TerrainFace(shapeGenerator, meshFilters[i].sharedMesh, resolution, directions[i]);
         }
+    }
+
+    public void GeneratePlanet()
+    {
+        Initialize();
+        GenerateMesh();
+        GenerateColors();
+    }
+
+    public void OnShapeSettingsUpdated()
+    {
+        if (!autoUpdate)
+            return;
+
+        Initialize();
+        GenerateMesh();
+    }
+
+    public void OnColorSettingsUpdated()
+    {
+        if (!autoUpdate)
+            return;
+
+        Initialize();
+        GenerateColors();
     }
 
     private void GenerateMesh()
@@ -49,6 +87,14 @@ public class Planet : MonoBehaviour
         foreach (TerrainFace face in terrainFaces)
         {
             face.ConstructMesh();
+        }
+    }
+
+    private void GenerateColors()
+    {
+        foreach (MeshFilter meshFilter in meshFilters)
+        {
+            meshFilter.GetComponent<MeshRenderer>().sharedMaterial.color = colorSettings.PlanetColor;
         }
     }
 }
