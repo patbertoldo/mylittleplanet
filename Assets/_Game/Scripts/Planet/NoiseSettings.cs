@@ -15,11 +15,11 @@ public class NoiseSettings
     private FilterType filterType;
     public FilterType FilterType { get { return filterType; } }
 
-    [SerializeField, ConditionalHide("FilterType", 0)]
+    [SerializeField, ConditionalHide("filterType", 0)]
     private SimpleNoiseSettings simpleNoiseSettings;
     public SimpleNoiseSettings SimpleNoiseSettings { get { return simpleNoiseSettings; } }
 
-    [SerializeField, ConditionalHide("FilterType", 1)]
+    [SerializeField, ConditionalHide("filterType", 1)]
     private RidgidNoiseSettings ridgidNoiseSettings;
     public RidgidNoiseSettings RidgidNoiseSettings { get { return ridgidNoiseSettings; } }
 }
