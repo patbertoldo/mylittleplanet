@@ -6,8 +6,8 @@ using UnityEngine;
 public class ColorSettings : ScriptableObject
 {
     [SerializeField]
-    private Gradient gradient;
-    public Gradient Gradient { get { return gradient; } }
+    private BiomeColorSettings biomeColorSettings;
+    public BiomeColorSettings BiomeColorSettings { get { return biomeColorSettings; } }
 
     [SerializeField]
     private Material planetMaterial;
