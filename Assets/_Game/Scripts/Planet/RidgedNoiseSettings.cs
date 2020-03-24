@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class RidgidNoiseSettings : SimpleNoiseSettings
+public class RidgedNoiseSettings : SimpleNoiseSettings
 {
     [SerializeField]
     private float weightMultiplier = 0.8f;

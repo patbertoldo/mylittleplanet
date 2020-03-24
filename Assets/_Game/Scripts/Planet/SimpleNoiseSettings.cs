@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class SimpleNoiseSettings
 {
-    public int Seed { get; set; } = 1337;
-
     [SerializeField]
     private float strength = 1;
     public float Strength { get { return strength; } }

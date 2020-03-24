@@ -5,7 +5,7 @@ using UnityEngine;
 public enum FilterType
 {
     Simple,
-    Ridgid
+    Ridged
 }
 
 [System.Serializable]
@@ -20,6 +20,6 @@ public class NoiseSettings
     public SimpleNoiseSettings SimpleNoiseSettings { get { return simpleNoiseSettings; } }
 
     [SerializeField, ConditionalHide("filterType", 1)]
-    private RidgidNoiseSettings ridgidNoiseSettings;
-    public RidgidNoiseSettings RidgidNoiseSettings { get { return ridgidNoiseSettings; } }
+    private RidgedNoiseSettings ridgedNoiseSettings;
+    public RidgedNoiseSettings RidgedNoiseSettings { get { return ridgedNoiseSettings; } }
 }

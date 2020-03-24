@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RidgidNoiseFilter : INoiseFilter
+public class RidgedNoiseFilter : INoiseFilter
 {
-    private RidgidNoiseSettings noiseSettings;
+    private RidgedNoiseSettings noiseSettings;
     private FastNoise noise = new FastNoise();
 
-    public RidgidNoiseFilter(RidgidNoiseSettings noiseSettings)
+    public RidgedNoiseFilter(RidgedNoiseSettings noiseSettings)
     {
         this.noiseSettings = noiseSettings;
     }
