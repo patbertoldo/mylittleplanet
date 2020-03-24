@@ -12,4 +12,8 @@ public class ColorSettings : ScriptableObject
     [SerializeField]
     private Material planetMaterial;
     public Material PlanetMaterial { get { return planetMaterial; } }
+
+    [SerializeField]
+    private Gradient oceanColor;
+    public Gradient OceanColor { get { return oceanColor; } }
 }

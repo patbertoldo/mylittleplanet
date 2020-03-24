@@ -44,7 +44,7 @@ public class RidgidNoiseFilter : INoiseFilter
             amplitude *= noiseSettings.Persistence;
         }
 
-        noiseValue = Mathf.Max(0, noiseValue - noiseSettings.Minimum);
+        noiseValue = noiseValue - noiseSettings.Minimum;
 
         return noiseValue * noiseSettings.Strength;
     }
