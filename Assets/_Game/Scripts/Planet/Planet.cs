@@ -29,8 +29,16 @@ public class Planet : MonoBehaviour
     private ShapeGenerator shapeGenerator = new ShapeGenerator();
     private ColorGenerator colorGenerator = new ColorGenerator();
 
-    public ShapeSettings shapeSettings;
-    public ColorSettings colorSettings;
+    [SerializeField]
+    private ShapeSettings shapeSettings;
+    public ShapeSettings ShapeSettings { get { return shapeSettings; } }
+    [SerializeField]
+    private ColorSettings colorSettings;
+    public ColorSettings ColorSettings { get { return colorSettings; } }
+
+    [SerializeField]
+    private int seed = 1337;
+    public int Seed { get { return seed; } }
 
     [HideInInspector]
     public bool shapeSettingsFoldout;
@@ -75,6 +83,13 @@ public class Planet : MonoBehaviour
             bool renderface = faceRenderMask == FaceRenderMask.All || (int)faceRenderMask - 1 == i;
             meshFilters[i].gameObject.SetActive(renderface);
         }
+    }
+
+    public void RandomiseSeed()
+    {
+        seed = Random.Range(int.MinValue, int.MaxValue);
+        shapeSettings.Seed = seed;
+        GeneratePlanet();
     }
 
     public void GeneratePlanet()

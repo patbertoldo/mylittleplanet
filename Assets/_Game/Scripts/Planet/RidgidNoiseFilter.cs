@@ -12,7 +12,7 @@ public class RidgidNoiseFilter : INoiseFilter
         this.noiseSettings = noiseSettings;
     }
 
-    public float Evaluate(Vector3 point)
+    public float Evaluate(Vector3 point, int seed)
     {
         float noiseValue = 0f;
         float frequency = noiseSettings.BaseRoughness;
@@ -21,6 +21,7 @@ public class RidgidNoiseFilter : INoiseFilter
 
         for (int i = 0; i < noiseSettings.NumberOfLayers; i++)
         {
+            noise.SetSeed(seed);
             // Invert absolute value by subtracting from 1.
             float v = 1 - Mathf.Abs(noise.GetSimplex(
                 point.x * frequency + noiseSettings.Centre.x,

@@ -12,7 +12,7 @@ public class SimpleNoiseFilter : INoiseFilter
         this.noiseSettings = noiseSettings;
     }
 
-    public float Evaluate(Vector3 point)
+    public float Evaluate(Vector3 point, int seed)
     {
         float noiseValue = 0;
         float frequency = noiseSettings.BaseRoughness;
@@ -20,6 +20,7 @@ public class SimpleNoiseFilter : INoiseFilter
 
         for (int i = 0; i < noiseSettings.NumberOfLayers; i++)
         {
+            noise.SetSeed(seed);
             float v = noise.GetSimplex(
                 point.x * frequency + noiseSettings.Centre.x,
                 point.y * frequency + noiseSettings.Centre.y,

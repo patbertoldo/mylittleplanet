@@ -13,6 +13,9 @@ public class ShapeSettings : ScriptableObject
     private NoiseLayer[] noiseLayers;
     public NoiseLayer[] NoiseLayers { get { return noiseLayers; } }
 
+    private int seed = 1337;
+    public int Seed { get { return seed; } set { seed = value; } }
+
     [System.Serializable]
     public class NoiseLayer
     {

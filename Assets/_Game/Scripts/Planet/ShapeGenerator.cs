@@ -31,7 +31,7 @@ public class ShapeGenerator
 
         if (noiseFilters.Length > 0)
         {
-            firstLayer = noiseFilters[0].Evaluate(pointOnUnitSphere);
+            firstLayer = noiseFilters[0].Evaluate(pointOnUnitSphere, shapeSettings.Seed);
 
             if (shapeSettings.NoiseLayers[0].Enabled)
             {
@@ -44,7 +44,7 @@ public class ShapeGenerator
             if (shapeSettings.NoiseLayers[i].Enabled)
             {
                 float mask = (shapeSettings.NoiseLayers[i].UseFirstLayerAsMask) ? firstLayer : 1;
-                elevation += noiseFilters[i].Evaluate(pointOnUnitSphere) * mask;
+                elevation += noiseFilters[i].Evaluate(pointOnUnitSphere, shapeSettings.Seed) * mask;
             }
         }
 
